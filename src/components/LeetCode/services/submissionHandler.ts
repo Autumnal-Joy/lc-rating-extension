@@ -1,7 +1,7 @@
 import { CROSS_TAB_PROGRESS_KEY } from "@/config/constants";
 import CrossTabQueue from "@/structure/CrossTabQueue";
 import Logger from "@/utils/logger";
-import { ResponseHeader } from "../lib/fetchInterceptor";
+import { ResponseHeader } from "../utils/fetchInterceptor";
 import { isSubmissonResponseData } from "./type";
 import { ProgressEventData } from "@/types/progressEventData";
 
