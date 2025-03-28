@@ -1,4 +1,4 @@
-import { extensionName } from "../config/constant";
+import { extensionName } from "@/config/constant";
 
 export enum LogLevel {
   ERROR,

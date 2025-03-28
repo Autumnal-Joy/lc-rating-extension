@@ -1,6 +1,7 @@
-import Logger from "./logger";
+import Logger from "@/utils/logger";
 
 const logger = new Logger("FetchInterceptor");
+
 class FetchInterceptor {
   private originalFetch: typeof fetch;
   private handlers: Set<(response: Response) => Promise<void>> = new Set();
@@ -42,18 +43,14 @@ class FetchInterceptor {
   ): Promise<Response> {
     const originalResponse = await this.originalFetch.apply(window, args);
 
-    await Promise.all(
-      [...this.handlers].map(async (handler) => {
-        try {
-          const clonedResponse = originalResponse.clone();
-          await handler(clonedResponse);
-        } catch (error) {
-          const name = handler.name || "<anonymous>";
-          logger.error(`Handler ${name} error:`, error);
-        }
-      })
-    ).catch((error) => {
-      logger.error("Fetch interceptor error:", error);
+    [...this.handlers].map(async (handler) => {
+      try {
+        const clonedResponse = originalResponse.clone();
+        await handler(clonedResponse);
+      } catch (error) {
+        const name = handler.name || "<anonymous>";
+        logger.error(`Handler ${name} error:`, error);
+      }
     });
 
     return originalResponse;

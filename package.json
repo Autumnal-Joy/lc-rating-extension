@@ -18,6 +18,7 @@
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react-swc": "^3.0.0",
     "typescript": "^5.7.2",
+    "unplugin-auto-import": "^19.1.2",
     "vite": "^6.0.5",
     "vite-plugin-monkey": "^5.0.3"
   }

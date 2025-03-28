@@ -1,12 +1,16 @@
+import { extensionName } from "@/config/constant";
 import react from "@vitejs/plugin-react-swc";
+import AutoImport from "unplugin-auto-import/vite";
 import { defineConfig } from "vite";
-import monkey, { cdn } from "vite-plugin-monkey";
-import { extensionName } from "./src/config/constant";
+import { cdn, default as monkey, util } from "vite-plugin-monkey";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    AutoImport({
+      imports: [util.unimportPreset],
+    }),
     monkey({
       entry: "src/main.tsx",
       userscript: {
