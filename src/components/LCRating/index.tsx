@@ -5,9 +5,9 @@ const logger = new Logger("LCRatingSide", import.meta.env.VITE_DEBUG_LEVEL);
 
 function LCRatingSide() {
   useEffect(() => {
-    logger.info(`extension mounted`);
+    logger.info(`Extension mounted`);
     return () => {
-      logger.info(`extension unmounted`);
+      logger.info(`Extension unmounted`);
     };
   }, []);
   return <></>;

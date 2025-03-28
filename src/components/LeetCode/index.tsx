@@ -7,9 +7,9 @@ const logger = new Logger("LeetCodeSide", import.meta.env.VITE_DEBUG_LEVEL);
 
 function LeetCodeSide() {
   useEffect(() => {
-    logger.info(`extension mounted`);
+    logger.info(`Extension mounted`);
     return () => {
-      logger.info(`extension unmounted`);
+      logger.info(`Extension unmounted`);
     };
   }, []);
   useEffect(() => {
