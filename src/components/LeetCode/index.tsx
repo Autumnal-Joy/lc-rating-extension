@@ -1,8 +1,17 @@
 import { useEffect } from "react";
 import submissionHandler from "./services/submissionHandler";
 import fetchInterceptor from "./lib/fetchInterceptor";
+import Logger from "@/utils/logger";
 
-function LeetCode() {
+const logger = new Logger("LeetCodeSide", import.meta.env.VITE_DEBUG_LEVEL);
+
+function LeetCodeSide() {
+  useEffect(() => {
+    logger.info(`extension mounted`);
+    return () => {
+      logger.info(`extension unmounted`);
+    };
+  }, []);
   useEffect(() => {
     fetchInterceptor.addHandler(submissionHandler);
     return () => {
@@ -12,4 +21,4 @@ function LeetCode() {
   return <></>;
 }
 
-export default LeetCode;
+export default LeetCodeSide;

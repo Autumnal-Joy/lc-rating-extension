@@ -1,5 +1,5 @@
-import LCRating from "@/components/LCRating";
-import LeetCode from "@/components/LeetCode";
+import LCRatingSide from "@/components/LCRating";
+import LeetCodeSide from "@/components/LeetCode";
 import {
   LC_RATING_HOST,
   LEETCODE_HOST,
@@ -23,12 +23,12 @@ ReactDOM.createRoot(
         (import.meta.env.MODE === "development" &&
           location.hostname === "localhost")
       ) {
-        return <LCRating />;
+        return <LCRatingSide />;
       } else if (
         location.hostname === LEETCODE_HOST ||
         location.hostname === LEETCODE_HOST_CN
       ) {
-        return <LeetCode />;
+        return <LeetCodeSide />;
       }
     })()}
   </React.StrictMode>

@@ -14,22 +14,29 @@ const logger = new Logger(
 const reg = new RegExp("^https://leetcode.cn/problems/(.+)/submissions");
 
 async function fn(response: Response) {
+  logger.info("Starting handle submission response");
+  logger.debug("Response", response);
+
   if (response.bodyUsed) {
     logger.error("Response body already used");
     return;
   }
+
+  logger.info("Get submission response data");
   const respData = await response.json();
   if (!isSubmissonResponseData(respData)) {
     logger.error("Response data is not valid");
     return;
   }
+  logger.debug("Response data", respData);
 
   if (respData.state !== "SUCCESS") {
     return;
   }
 
-  const problemSlug = reg.exec(location.href)?.[1];
+  logger.info("Push progress event data");
 
+  const problemSlug = reg.exec(location.href)?.[1];
   if (problemSlug === void 0) {
     logger.error("Problem slug is undefined");
     return;
@@ -49,6 +56,7 @@ async function fn(response: Response) {
       overwrite: ["TODO"],
     };
   }
+  logger.debug("Progress event data", peData);
   sharedQueue.push(peData);
 }
 
