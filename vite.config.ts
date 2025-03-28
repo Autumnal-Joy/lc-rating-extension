@@ -1,6 +1,7 @@
 import react from "@vitejs/plugin-react-swc";
 import { defineConfig } from "vite";
 import monkey, { cdn } from "vite-plugin-monkey";
+import { extensionName } from "./src/config/constant";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,7 +10,7 @@ export default defineConfig({
     monkey({
       entry: "src/main.tsx",
       userscript: {
-        name: "lc-rating extension",
+        name: extensionName,
         namespace: "https://github.com/Autumnal-Joy",
         // copyright: "",
         version: "0.0.1",
