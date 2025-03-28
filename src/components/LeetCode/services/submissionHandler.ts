@@ -1,11 +1,11 @@
-import { crossTabProgressKey } from "@/config/constants";
+import { CROSS_TAB_PROGRESS_KEY } from "@/config/constants";
 import CrossTabQueue from "@/structure/CrossTabQueue";
 import Logger from "@/utils/logger";
 import { ResponseHeader } from "../lib/fetchInterceptor";
 import { isSubmissonResponseData } from "./type";
 import { ProgressEventData } from "@/types/progressEventData";
 
-const sharedQueue = new CrossTabQueue(crossTabProgressKey);
+const sharedQueue = new CrossTabQueue(CROSS_TAB_PROGRESS_KEY);
 const logger = new Logger("SubmissionHandler");
 
 const reg = new RegExp("^https://leetcode.cn/problems/(.+)/submissions");

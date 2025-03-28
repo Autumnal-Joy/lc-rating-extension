@@ -1,4 +1,4 @@
-import { extensionName } from "@/config/constants";
+import { EXTENSION_NAME } from "@/config/constants";
 
 export enum LogLevel {
   ERROR,
@@ -15,7 +15,7 @@ function wrap(fn: (...args: any[]) => void) {
     const s = d.getSeconds().toString().padStart(2, "0");
     const ms = d.getMilliseconds().toString().padStart(3, "0");
 
-    const parts = [`[${extensionName}]`];
+    const parts = [`[${EXTENSION_NAME}]`];
 
     if (modName !== undefined) {
       parts.push(`[${modName}]`);

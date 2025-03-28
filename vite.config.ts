@@ -1,8 +1,9 @@
-import { extensionName } from "./src/config/constants";
 import react from "@vitejs/plugin-react-swc";
+import path from "path";
 import AutoImport from "unplugin-auto-import/vite";
 import { defineConfig } from "vite";
 import { cdn, default as monkey, util } from "vite-plugin-monkey";
+import { EXTENSION_NAME } from "./src/config/constants";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +15,7 @@ export default defineConfig({
     monkey({
       entry: "src/main.tsx",
       userscript: {
-        name: extensionName,
+        name: EXTENSION_NAME,
         namespace: "https://github.com/Autumnal-Joy",
         // copyright: "",
         version: "0.0.1",
@@ -65,4 +66,9 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "src"),
+    },
+  },
 });
