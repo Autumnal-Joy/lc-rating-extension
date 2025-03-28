@@ -20,7 +20,8 @@ ReactDOM.createRoot(
     {(() => {
       if (
         location.hostname === LC_RATING_HOST ||
-        location.hostname === "localhost"
+        (import.meta.env.MODE === "development" &&
+          location.hostname === "localhost")
       ) {
         return <LCRating />;
       } else if (

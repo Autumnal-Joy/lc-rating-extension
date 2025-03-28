@@ -6,7 +6,7 @@ import { cdn, default as monkey, util } from "vite-plugin-monkey";
 import { EXTENSION_NAME } from "./src/config/constants";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     AutoImport({
@@ -39,8 +39,8 @@ export default defineConfig({
           "https://huxulm.github.io/lc-rating/*",
           "https://leetcode.cn/*",
           "https://leetcode.com/*",
-          "http://127.0.0.1:3000/*",
-        ],
+          mode === "development" ? "http://localhost:3000/*" : "",
+        ].filter(Boolean),
         // exclude: [],
         "run-at": "document-end",
         // "run-in"  : "",
@@ -71,4 +71,4 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
-});
+}));
