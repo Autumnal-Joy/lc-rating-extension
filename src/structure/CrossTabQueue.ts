@@ -1,7 +1,7 @@
 import Logger from "@/utils/logger";
 
 const crossTabQueueStoragePrefix = "CrossTabQueue";
-const logger = new Logger("CrossTabQueue");
+const logger = new Logger("CrossTabQueue", import.meta.env.VITE_DEBUG_LEVEL);
 
 export default class CrossTabQueue<T> {
   private readonly storageKey: string;

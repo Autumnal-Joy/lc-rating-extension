@@ -6,7 +6,10 @@ import { isSubmissonResponseData } from "./type";
 import { ProgressEventData } from "@/types/progressEventData";
 
 const sharedQueue = new CrossTabQueue(CROSS_TAB_PROGRESS_KEY);
-const logger = new Logger("SubmissionHandler");
+const logger = new Logger(
+  "SubmissionHandler",
+  import.meta.env.VITE_DEBUG_LEVEL
+);
 
 const reg = new RegExp("^https://leetcode.cn/problems/(.+)/submissions");
 

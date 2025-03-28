@@ -1,6 +1,6 @@
 import Logger from "@/utils/logger";
 
-const logger = new Logger("FetchInterceptor");
+const logger = new Logger("FetchInterceptor", import.meta.env.VITE_DEBUG_LEVEL);
 
 type SafeHeaderField =
   | "headers"
