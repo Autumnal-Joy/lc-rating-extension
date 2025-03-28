@@ -1,6 +1,6 @@
-import { crossTabQueueStoragePrefix } from "@/config/constant";
 import Logger from "@/utils/logger";
 
+const crossTabQueueStoragePrefix = "CrossTabQueue";
 const logger = new Logger("CrossTabQueue");
 
 export default class CrossTabQueue<T> {
@@ -17,7 +17,7 @@ export default class CrossTabQueue<T> {
     GM_setValue(this.storageKey, newData);
   }
 
-  enqueue(item: T) {
+  push(item: T) {
     this.updateData((current) => [...current, item]);
   }
 

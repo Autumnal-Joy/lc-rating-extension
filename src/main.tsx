@@ -1,7 +1,8 @@
+import LCRating from "@/components/LCRating";
+import LeetCode from "@/components/LeetCode";
+import "@/index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
 
 ReactDOM.createRoot(
   (() => {
@@ -11,6 +12,18 @@ ReactDOM.createRoot(
   })()
 ).render(
   <React.StrictMode>
-    <App />
+    {(() => {
+      if (
+        location.hostname === "localhost" ||
+        location.hostname === "huxulm.github.io"
+      ) {
+        return <LCRating />;
+      } else if (
+        location.hostname === "leetcode.cn" ||
+        location.hostname === "leetcode.com"
+      ) {
+        return <LeetCode />;
+      }
+    })()}
   </React.StrictMode>
 );

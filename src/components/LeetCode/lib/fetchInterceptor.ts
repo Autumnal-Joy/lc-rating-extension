@@ -2,9 +2,25 @@ import Logger from "@/utils/logger";
 
 const logger = new Logger("FetchInterceptor");
 
+type SafeHeaderField =
+  | "headers"
+  | "ok"
+  | "redirected"
+  | "status"
+  | "statusText"
+  | "type"
+  | "url";
+
+export type ResponseHeader = Pick<Response, SafeHeaderField>;
+
+interface FetchInterceptorHandler {
+  fn: (response: Response) => Promise<void>;
+  filter: (responseHeader: ResponseHeader) => boolean;
+}
+
 class FetchInterceptor {
   private originalFetch: typeof fetch;
-  private handlers: Set<(response: Response) => Promise<void>> = new Set();
+  private handlers: Set<FetchInterceptorHandler> = new Set();
 
   private install() {
     if (window.fetch === this.originalFetch) {
@@ -24,14 +40,14 @@ class FetchInterceptor {
     this.originalFetch = window.fetch;
   }
 
-  addHandler(handler: (response: Response) => Promise<void>) {
+  addHandler(handler: FetchInterceptorHandler) {
     if (this.handlers.size === 0) {
       this.install();
     }
     this.handlers.add(handler);
   }
 
-  removeHandler(handler: (response: Response) => Promise<void>) {
+  removeHandler(handler: FetchInterceptorHandler) {
     this.handlers.delete(handler);
     if (this.handlers.size === 0) {
       this.uninstall();
@@ -45,10 +61,11 @@ class FetchInterceptor {
 
     [...this.handlers].map(async (handler) => {
       try {
+        if (!handler.filter(originalResponse)) return;
         const clonedResponse = originalResponse.clone();
-        await handler(clonedResponse);
+        await handler.fn(clonedResponse);
       } catch (error) {
-        const name = handler.name || "<anonymous>";
+        const name = handler.fn.name || "<anonymous>";
         logger.error(`Handler ${name} error:`, error);
       }
     });

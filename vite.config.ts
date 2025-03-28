@@ -1,4 +1,4 @@
-import { extensionName } from "@/config/constant";
+import { extensionName } from "./src/config/constants";
 import react from "@vitejs/plugin-react-swc";
 import AutoImport from "unplugin-auto-import/vite";
 import { defineConfig } from "vite";
