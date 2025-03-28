@@ -5,7 +5,6 @@ import {
   LEETCODE_HOST,
   LEETCODE_HOST_CN,
 } from "@/config/constants";
-import "@/index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 
