@@ -15,14 +15,13 @@ function wrap(fn: (...args: any[]) => void) {
     const s = d.getSeconds().toString().padStart(2, "0");
     const ms = d.getMilliseconds().toString().padStart(3, "0");
 
-    const parts = [`[${EXTENSION_NAME}]`];
-
-    if (modName !== undefined) {
-      parts.push(`[${modName}]`);
+    if (modName === undefined) {
+      const parts = `%c[${EXTENSION_NAME}] [${h}:${m}:${s}::${ms}]`;
+      fn(parts, "color: #1b75d0", "", ...args);
+    } else {
+      const parts = `%c[${EXTENSION_NAME}] [${modName}] [${h}:${m}:${s}::${ms}]`;
+      fn(parts, "color: #1b75d0", "", ...args);
     }
-    parts.push(`[${h}:${m}:${s}::${ms}]`);
-
-    fn(parts.join(" "), ...args);
   };
 }
 
