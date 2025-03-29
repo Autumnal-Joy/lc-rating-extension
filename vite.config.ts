@@ -32,7 +32,7 @@ export default defineConfig(({ mode }) => ({
         // website: "",
         // source: "",
         // antifeatures: [],
-        require: ["https://cdn.tailwindcss.com"],
+        require: [],
         resource: {},
         // include: [],
         match: [

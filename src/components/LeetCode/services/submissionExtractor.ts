@@ -42,18 +42,19 @@ async function fn(response: Response) {
     return;
   }
 
+  const overwrite = ["TODO", "WORKING", "AC"];
   let peData: ProgressEventData;
   if (respData.status_msg === "Accepted") {
     peData = {
       problemSlug,
       optionKey: "AC",
-      overwrite: ["TODO"],
+      overwrite,
     };
   } else {
     peData = {
       problemSlug,
       optionKey: "WORKING",
-      overwrite: ["TODO"],
+      overwrite,
     };
   }
   logger.debug("Progress event data", peData);

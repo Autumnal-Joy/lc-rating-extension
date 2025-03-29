@@ -3,7 +3,7 @@ const optionKeys = ["AC", "WORKING"] as const;
 export interface ProgressEventData {
   problemSlug: string;
   optionKey: (typeof optionKeys)[number];
-  overwrite: ["TODO"];
+  overwrite: string[];
 }
 
 export function isProgressEventData(data: any): data is ProgressEventData {
