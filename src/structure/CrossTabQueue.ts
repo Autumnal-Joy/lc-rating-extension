@@ -9,7 +9,6 @@ export default class CrossTabQueue<T> {
 
   constructor(key: string) {
     this.storageKey = `${crossTabQueueStoragePrefix}_${key}`;
-    logger.info(`CrossTabQueue initialized for ${this.storageKey}`);
   }
 
   private updateData(updater: (current: T[]) => T[]) {
@@ -27,7 +26,7 @@ export default class CrossTabQueue<T> {
 
   /** 订阅队列变化 */
   subscribe(callback: (items: T[]) => void) {
-    logger.info(`Initial items for ${this.storageKey}`);
+    logger.info(`Subscribed for ${this.storageKey}`);
     try {
       const items = this.flushQueue();
       logger.debug("Initial items:", items);
@@ -45,8 +44,8 @@ export default class CrossTabQueue<T> {
   }
 
   unsubscribe() {
-    logger.info(`Unsubscribed from ${this.storageKey}`);
     if (this.listenerId) {
+      logger.info(`Unsubscribed from ${this.storageKey}`);
       GM_removeValueChangeListener(this.listenerId);
     }
   }
