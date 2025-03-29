@@ -12,7 +12,9 @@ class ClockTrigger {
     private readonly interval: number = 1000
   ) {
     this.trigger = () => {
-      this.off();
+      if (!this.isActive) return;
+      this.isActive = false;
+      this.stopTimer();
       this.onTrigger();
     };
 
