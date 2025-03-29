@@ -12,7 +12,7 @@ export default class CrossTabQueue<T> {
   }
 
   private updateData(updater: (current: T[]) => T[]) {
-    logger.info(`Data updated for ${this.storageKey}`);
+    logger.info(`Data updated for "${this.storageKey}"`);
     const oldData = GM_getValue<T[]>(this.storageKey, []);
     const newData = updater(oldData);
     GM_setValue(this.storageKey, newData);
@@ -26,18 +26,18 @@ export default class CrossTabQueue<T> {
 
   /** 订阅队列变化 */
   subscribe(callback: (items: T[]) => void) {
-    logger.info(`Subscribed for ${this.storageKey}`);
+    logger.info(`Subscribed for "${this.storageKey}"`);
     try {
       const items = this.flushQueue();
       logger.debug("Initial items:", items);
       if (items.length > 0) callback(items);
     } catch (error) {
-      logger.error(`${this.storageKey} initial processing failed:`, error);
+      logger.error(`"${this.storageKey}" initial processing failed:`, error);
     }
 
     // 监听后续变更
     this.listenerId = GM_addValueChangeListener(this.storageKey, () => {
-      logger.info(`Data changed for ${this.storageKey}`);
+      logger.info(`Data changed for "${this.storageKey}"`);
       const items = this.flushQueue();
       if (items.length > 0) callback(items);
     });
@@ -45,14 +45,14 @@ export default class CrossTabQueue<T> {
 
   unsubscribe() {
     if (this.listenerId) {
-      logger.info(`Unsubscribed from ${this.storageKey}`);
+      logger.info(`Unsubscribed from "${this.storageKey}"`);
       GM_removeValueChangeListener(this.listenerId);
     }
   }
 
   /** 获取并清空队列 */
   private flushQueue() {
-    logger.info(`Flushing queue for ${this.storageKey}`);
+    logger.info(`Flushing queue for "${this.storageKey}"`);
     const currentData = GM_getValue<T[]>(this.storageKey, []);
     if (currentData.length === 0) return [];
 
