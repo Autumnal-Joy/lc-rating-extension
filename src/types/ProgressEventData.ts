@@ -14,6 +14,6 @@ export function isProgressEventData(data: any): data is ProgressEventData {
     "problemSlug" in data &&
     typeof data["problemSlug"] === "string" &&
     "optionKey" in data &&
-    data["optionKey"] in optionKeys
+    optionKeys.includes(data["optionKey"])
   );
 }
