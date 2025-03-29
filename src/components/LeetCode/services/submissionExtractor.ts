@@ -1,13 +1,13 @@
 import { CROSS_TAB_PROGRESS_KEY } from "@/config/constants";
 import CrossTabQueue from "@/structure/CrossTabQueue";
-import Logger from "@/utils/logger";
+import Logger from "@/utils/Logger";
 import { ResponseHeader } from "../utils/fetchInterceptor";
 import { isSubmissonResponseData } from "./type";
-import { ProgressEventData } from "@/types/progressEventData";
+import { ProgressEventData } from "@/types/ProgressEventData";
 
 const sharedQueue = new CrossTabQueue(CROSS_TAB_PROGRESS_KEY);
 const logger = new Logger(
-  "SubmissionHandler",
+  "submissionExtractor",
   import.meta.env.VITE_DEBUG_LEVEL
 );
 

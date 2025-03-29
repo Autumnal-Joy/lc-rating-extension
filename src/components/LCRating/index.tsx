@@ -1,4 +1,4 @@
-import Logger from "@/utils/logger";
+import Logger from "@/utils/Logger";
 import { useEffect } from "react";
 
 const logger = new Logger("LCRatingSide", import.meta.env.VITE_DEBUG_LEVEL);
@@ -10,6 +10,7 @@ function LCRatingSide() {
       logger.info(`Extension unmounted`);
     };
   }, []);
+
   return <></>;
 }
 

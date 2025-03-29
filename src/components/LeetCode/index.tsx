@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import submissionHandler from "./services/submissionHandler";
+import submissionExtractor from "./services/submissionExtractor";
 import fetchInterceptor from "./utils/fetchInterceptor";
-import Logger from "@/utils/logger";
+import Logger from "@/utils/Logger";
 
 const logger = new Logger("LeetCodeSide", import.meta.env.VITE_DEBUG_LEVEL);
 
@@ -13,9 +13,9 @@ function LeetCodeSide() {
     };
   }, []);
   useEffect(() => {
-    fetchInterceptor.addHandler(submissionHandler);
+    fetchInterceptor.addHandler(submissionExtractor);
     return () => {
-      fetchInterceptor.removeHandler(submissionHandler);
+      fetchInterceptor.removeHandler(submissionExtractor);
     };
   }, []);
   return <></>;

@@ -1,4 +1,4 @@
-import Logger from "@/utils/logger";
+import Logger from "@/utils/Logger";
 
 const crossTabQueueStoragePrefix = "CrossTabQueue";
 const logger = new Logger("CrossTabQueue", import.meta.env.VITE_DEBUG_LEVEL);

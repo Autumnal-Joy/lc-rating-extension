@@ -1,4 +1,4 @@
-import Logger from "@/utils/logger";
+import Logger from "@/utils/Logger";
 
 const logger = new Logger("FetchInterceptor", import.meta.env.VITE_DEBUG_LEVEL);
 
