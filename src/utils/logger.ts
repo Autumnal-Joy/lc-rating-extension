@@ -25,6 +25,10 @@ function wrap(fn: (...args: any[]) => void) {
   };
 }
 
+function check(w: any): w is Window & { LCRE_DEBUG: boolean } {
+  return w === unsafeWindow && w.LCRE_DEBUG !== undefined;
+}
+
 export default class Logger {
   name?: string;
   logLevel: LogLevel;
@@ -43,7 +47,12 @@ export default class Logger {
     consoleFn: (...args: any[]) => void,
     ...args: any[]
   ) {
-    if (this.logLevel < level) return;
+    if (
+      (check(unsafeWindow) && unsafeWindow.LCRE_DEBUG === false) ||
+      this.logLevel < level
+    ) {
+      return;
+    }
 
     const wrapped = wrap(consoleFn);
     wrapped(this.name, ...args);

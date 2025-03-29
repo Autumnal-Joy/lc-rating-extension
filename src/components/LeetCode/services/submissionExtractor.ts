@@ -42,7 +42,7 @@ async function fn(response: Response) {
     return;
   }
 
-  const overwrite = ["TODO", "WORKING", "AC"];
+  const overwrite = ["TODO", "WORKING"];
   let peData: ProgressEventData;
   if (respData.status_msg === "Accepted") {
     peData = {
